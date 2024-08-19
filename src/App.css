@@ -4,12 +4,79 @@
   padding: 2rem;
   text-align: center;
 }
-
+:root{
+  --color-primary:#0ca6f3;
+  --color-secondary:#010326;
+  --color-light:#ffffff;
+  --clr-active: #33ae10;
+  --clr-complete: #5454e8;
+  --clr-update: #00d866;
+  --clr-delete: #ff7849;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+}
+.todolist-container{
+  background-color: var(--color-light);
+  margin: 20px 0;
+  border-radius: 8px;
+  height: calc(100vh - 40px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+/* Header*/
+.todolist-header{
+  background-color: var(--color-primary);
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/*logo area*/
+.todolist-logo-area{
+  display: flex;
+  align-items: center;
+  width: 150px;
+  gap: 10px;
+}
+/*-----------filter area----------*/
+.todo-filter-area{
+  color: var(--color-light);
+  font-weight: 600;
+}
+.todo-filter{
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  background-color: var(--color-light);
+  cursor: pointer;
+}
+
+/*-----------------------alert------*/
+div.todolist-alert{
+  position: relative;
+}
+p.todolist-alert{
+  padding: 5px 15px;
+  border-radius: 50px;
+  color: var(--color-light);
+}
+p.todolist-alert.todolist-alert-danger{
+  background-color: var(--clr-delete);
+}
+p.todolist-alert.todolist-alert-success{
+  background-color: var(--clr-update);
+}
+p.todolist-alert.todolist-alert-complete{
+  background-color: var(--clr-complete);
+}
+p.todolist-alert.todolist-alert-warning{
+  background-color: var(--clr-delete);
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
@@ -39,4 +106,10 @@
 
 .read-the-docs {
   color: #888;
+}
+.todo-list{
+  position: relative;
+  max-width: 768px !important;
+  margin: 0 auto;
+  font-size: 16px;
 }
