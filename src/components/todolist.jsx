@@ -54,7 +54,7 @@ export default function TodoList({filterTodos,editHandler}){
                                 )
                             })}
                         </tbody>
-                    ):<p>No Items Found</p>
+                    ):<p className="todo-empty">No Items Found</p>
                 }
                 {
                     filterTodos.length>1 &&(

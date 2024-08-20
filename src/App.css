@@ -1,9 +1,4 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+
 :root{
   --color-primary:#0ca6f3;
   --color-secondary:#010326;
@@ -21,12 +16,19 @@
 }
 .todolist-container{
   background-color: var(--color-light);
+  width: 100%;
   margin: 20px 0;
   border-radius: 8px;
   height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+@media (max-width:768px){
+  .todolist-container{
+    height: 100vh;
+    margin: 0;
+  }
 }
 /* Header*/
 .todolist-header{
@@ -127,38 +129,78 @@ input.todo-input-control:focus{
     padding: 8px 10px;
   }
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 .todo-list{
   position: relative;
-  max-width: 768px !important;
   margin: 0 auto;
   font-size: 16px;
+  max-width: 768px;
+}
+#root{
+  width: 100%;
+}
+
+/*---------------todolist button*/
+.todo-btn{
+  transition: all .2s ease-in-out;
+  opacity: .8;
+}
+.todo-btn:hover{
+  opacity: 1;
+  transform: scale(0.9);
+}
+.todo-btn:disabled{
+  cursor: not-allowed;
+}
+/*--------------body---------------------*/
+.todolist-body{
+  flex-grow: 1;
+  padding: 10px 20px;
+}
+.todo-empty{
+  text-align: center;
+}
+.todolist-table{
+  width: 100%;
+  height: calc(100vh - 190px);
+  display: block;
+  border-collapse: collapse;
+  overflow: auto;
+}
+.todolist-table::-webkit-scrollbar{
+  width: 18px;
+  height: 8px;
+}
+.todolist-table::-webkit-scrollbar-thumb{
+  border-radius: 50px;
+  background-color: #d8d8d8;
+}
+.todolist-table::-webkit-scrollbar-thumb:hover{
+  background-color: #a2a2a2;
+  visibility: visible;
+}
+.todolist-table td,
+.todolist-table th{
+  padding: 5px 15px;
+}
+.todolist-table tbody tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+.todolist-table tbody tr:hover{
+  background-color: #dddddd;
+}
+.todo-table-header{
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+  background-color: #010326;
+}
+.todo-date {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.todolist-table tfoot{
+  text-align: center;
 }
