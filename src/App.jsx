@@ -5,12 +5,17 @@ import { useContext, useRef, useState } from 'react'
 import { TodoContext } from './context/todoContext'
 import Alert from './components/Alert'
 import AddTodo from './components/addtodo'
+import TodoList from './components/todolist'
 function App() {
       const [isEditing,setIsEditing]=useState(false);
       const [editId,setEditId]=useState(null);
       const [editText,setEditText]=useState("");
-  const {alert,setAlert,showAlert}=useContext(TodoContext)
+      const {alert,setAlert,showAlert,filterTodoTasks}=useContext(TodoContext);
 
+      const filterTodos=filterTodoTasks();
+      const editHandler=()=>{
+
+      }
   return (
     <section className='todo-list'>
       <div className="todolist-container">
@@ -27,7 +32,9 @@ function App() {
           }
           <Filter/>
         </div>
-
+        <div className='todolist-body'>
+          <TodoList filterTodos={filterTodos} editHandler={editHandler} />
+        </div>
         <div className='todolist-addtodo'>
           <AddTodo isEditing={isEditing} editId={editId} editText={editText} />
         </div>

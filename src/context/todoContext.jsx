@@ -4,15 +4,49 @@ import filterValues from "../constants";
 export const TodoContext=createContext();
 
 export default function TodoProvider({children}){
+    const[isModalopen,setIsModalOpen]=useState(false);
     const [filter,setFilter]=useState(filterValues.all);
     const [alert,setAlert]=useState({});
+    const [todoTasks,setTodoTasks]=useState([]);
 
     //show alert method
     const showAlert=(show=false,message="",type="")=>{
         setAlert({show,message,type})
     }
+
+    const filterTodoTasks=()=>{
+        return todoTasks.filter((todo)=>{
+            if(filter===filterValues.all){
+                return todo;
+            }
+            else if(filter===filterValues.completed){
+                return todo.completed;
+            }
+            else if(filter===filterValues.uncompleted){
+                return !todo.completed;
+            }
+        })
+    }
+    const completeHandler=(id)=>{
+        setTodoTasks( todoTasks.map((todo)=>{
+            if(todo.id===id){
+                return {...todoTasks,completed:true};
+            }
+            return todo;
+        }));
+    }
+    const deleteHandler=(id)=>{
+        setTodoTasks(todoTasks.filter((todo)=>{
+            if(todo.id!==id){
+                return todo;
+            };
+        }))
+    }
+    const removeTodoTasks=()=>{
+        setTodoTasks([]);
+    } 
     return(
-        <TodoContext.Provider value={{filter,setFilter,alert,setAlert,showAlert}}>
+        <TodoContext.Provider value={{filter,setFilter,alert,setAlert,showAlert,todoTasks,setTodoTasks,removeTodoTasks,deleteHandler,completeHandler,filterTodoTasks,isModalopen,setIsModalOpen}}>
             {children}
         </TodoContext.Provider>
     )
