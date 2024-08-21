@@ -13,8 +13,11 @@ function App() {
       const {alert,setAlert,showAlert,filterTodoTasks}=useContext(TodoContext);
 
       const filterTodos=filterTodoTasks();
-      const editHandler=()=>{
-
+      const editHandler=(todo)=>{
+        console.log(todo)
+        setIsEditing(true);
+        setEditId(todo.id);
+        setEditText(todo.title)
       }
   return (
     <section className='todo-list'>

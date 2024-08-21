@@ -67,6 +67,7 @@ p.todolist-alert{
   padding: 5px 15px;
   border-radius: 50px;
   color: var(--color-light);
+  margin: 0;
 }
 p.todolist-alert.todolist-alert-danger{
   background-color: var(--clr-delete);
@@ -146,6 +147,7 @@ input.todo-input-control:focus{
 .todo-btn{
   transition: all .2s ease-in-out;
   opacity: .8;
+  color: var(--color-light);
 }
 .todo-btn:hover{
   opacity: 1;
@@ -159,15 +161,20 @@ input.todo-input-control:focus{
   flex-grow: 1;
   padding: 10px 20px;
 }
-.todo-empty{
+.todo-table-wrapper {
+  width: 100%;
+  height: calc(100vh - 190px);
+  overflow: auto;
+  display: block; /* Apply block display and scrolling to the wrapper */
+}
+ .todo-empty{
   text-align: center;
+  width: 100%;
 }
 .todolist-table{
   width: 100%;
-  height: calc(100vh - 190px);
-  display: block;
   border-collapse: collapse;
-  overflow: auto;
+  table-layout: fixed;
 }
 .todolist-table::-webkit-scrollbar{
   width: 18px;
@@ -185,6 +192,13 @@ input.todo-input-control:focus{
 .todolist-table th{
   padding: 5px 15px;
 }
+.todo-td{
+  margin: 0;
+}
+.todolist-table tbody td{
+  word-wrap: break-word;
+  text-align: left;
+}
 .todolist-table tbody tr:nth-child(even){
   background-color: #f2f2f2;
 }
@@ -198,9 +212,76 @@ input.todo-input-control:focus{
   background-color: #010326;
 }
 .todo-date {
-  font-size: 12px;
+  font-size: 13px;
   opacity: 0.7;
+  font-weight: 600;
 }
 .todolist-table tfoot{
   text-align: center;
+  width: 100%;
+}
+p.todo-completed{
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+span.status.completed{
+  background-color: var(--clr-complete);
+}
+span.status{
+  padding: 3px 10px;
+  color: var(--color-light);
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+span.status.active{
+  background-color: var(--clr-active);
+}
+.todolist-table th{
+  color: var(--color-light);
+  background-color: #010326;
+  padding: 5px unset;
+  text-align: left;
+}
+.todo-action{
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+button.todo-action-btn{
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+button.todo-action-btn svg{
+  scale: 1.7;
+}
+button.todo-complete-btn{
+  background-color: var(--color-primary);
+}
+.todo-btn{
+  opacity: .8;
+  color: var(--color-light);
+  border: none;
+}
+button.todo-task-completed{
+  background-color: var(--clr-complete);
+}
+button.todo-edit-btn{
+  background-color: var(--clr-update);
+}
+button.todo-delete-btn{
+  background-color: var(--clr-delete);
+}
+.todo-deleteall-btn{
+  padding: 10px 23px;
+  background-color: var(--clr-delete);
+  border-radius: 40px;
+  font-weight: 600;
 }

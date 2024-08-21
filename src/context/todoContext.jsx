@@ -30,7 +30,7 @@ export default function TodoProvider({children}){
     const completeHandler=(id)=>{
         setTodoTasks( todoTasks.map((todo)=>{
             if(todo.id===id){
-                return {...todoTasks,completed:true};
+                return {...todo,completed:true};
             }
             return todo;
         }));

@@ -49,6 +49,7 @@ export default function AddTodo({isEditing,editId,editText}){
             const end=editRef.current.value.length;
             editRef.current.setSelectionRange(end,end)
             editRef.current.focus();
+            setText(editText);
         }
     },[isEditing])
     return(
