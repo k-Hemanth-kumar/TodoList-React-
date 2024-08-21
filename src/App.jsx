@@ -6,11 +6,9 @@ import { TodoContext } from './context/todoContext'
 import Alert from './components/Alert'
 import AddTodo from './components/addtodo'
 import TodoList from './components/todolist'
+import Modal from './components/deletemodal'
 function App() {
-      const [isEditing,setIsEditing]=useState(false);
-      const [editId,setEditId]=useState(null);
-      const [editText,setEditText]=useState("");
-      const {alert,setAlert,showAlert,filterTodoTasks}=useContext(TodoContext);
+      const {alert,setAlert,showAlert,filterTodoTasks,isEditing,setIsEditing,editId,setEditId,editText,setEditText,isModalopen}=useContext(TodoContext);
 
       const filterTodos=filterTodoTasks();
       const editHandler=(todo)=>{
@@ -21,6 +19,7 @@ function App() {
       }
   return (
     <section className='todo-list'>
+      {isModalopen&& <Modal/>}
       <div className="todolist-container">
         <div className="todolist-header">
           <div className="todolist-logo-area">
@@ -39,11 +38,11 @@ function App() {
           <TodoList filterTodos={filterTodos} editHandler={editHandler} />
         </div>
         <div className='todolist-addtodo'>
-          <AddTodo isEditing={isEditing} editId={editId} editText={editText} />
+          <AddTodo />
         </div>
       </div>
     </section>
   )
 }
 
-export default App
+export default App;

@@ -8,6 +8,10 @@ export default function TodoProvider({children}){
     const [filter,setFilter]=useState(filterValues.all);
     const [alert,setAlert]=useState({});
     const [todoTasks,setTodoTasks]=useState([]);
+    const [isEditing,setIsEditing]=useState(false);
+    const [editId,setEditId]=useState(null);
+    const [editText,setEditText]=useState("");
+    const [deleteId,setDeleteId]=useState();
 
     //show alert method
     const showAlert=(show=false,message="",type="")=>{
@@ -46,7 +50,7 @@ export default function TodoProvider({children}){
         setTodoTasks([]);
     } 
     return(
-        <TodoContext.Provider value={{filter,setFilter,alert,setAlert,showAlert,todoTasks,setTodoTasks,removeTodoTasks,deleteHandler,completeHandler,filterTodoTasks,isModalopen,setIsModalOpen}}>
+        <TodoContext.Provider value={{filter,setFilter,alert,setAlert,showAlert,todoTasks,setTodoTasks,removeTodoTasks,deleteHandler,completeHandler,filterTodoTasks,isModalopen,setIsModalOpen,setIsEditing,isEditing,editId,setEditId,editText,setEditText,deleteId,setDeleteId}}>
             {children}
         </TodoContext.Provider>
     )

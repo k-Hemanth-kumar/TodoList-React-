@@ -7,7 +7,7 @@ import { CgEnter } from "react-icons/cg";
 
 export default function TodoList({filterTodos,editHandler}){
     console.log(filterTodos,3)
-    const {completeHandler,deleteHandler,removeTodoTasks}=useContext(TodoContext);
+    const {completeHandler,deleteHandler,removeTodoTasks,isModalopen,setIsModalOpen,deleteId,setDeleteId,showAlert}=useContext(TodoContext);
     return(
         <div className="todo-table-wrapper">
             <table className="todolist-table">
@@ -35,17 +35,22 @@ export default function TodoList({filterTodos,editHandler}){
                                         <td>
                                             <div className="todo-action">
                                                 <button title="Complete" type="button" className={`todo-btn todo-action-btn todo-complete-btn ${todo.completed?'todo-task-completed':""}`}
-                                                onClick={()=>completeHandler(todo.id)} disabled={todo.completed?true:false
+                                                onClick={()=>{
+                                                    completeHandler(todo.id);
+                                                    showAlert(true,"Task Completed Successfully!","complete")
+                                                }} disabled={todo.completed?true:false
                                                 } >
                                                     {todo.completed?<BsCheckAll/>:<AiOutlineCheck/>}
                                                 </button>
                                                 <button title="Edit" type="button" className={`todo-btn todo-action-btn todo-edit-btn`}
-                                                onClick={()=>editHandler(todo)}>
+                                                onClick={()=>
+                                                editHandler(todo)}>
                                                     {<BsPencilSquare/>}
                                                 </button>
                                                 <button title="Delted" type="button" className={`todo-btn todo-action-btn todo-delete-btn`}
                                                 onClick={()=>{
-                                                    deleteHandler(todo.id)
+                                                    setIsModalOpen(true);
+                                                    setDeleteId(todo.id);
                                                     }}>
                                                     {<BsTrash/>}
                                                 </button>
@@ -63,7 +68,7 @@ export default function TodoList({filterTodos,editHandler}){
                             <tr>
                                 <td colSpan={5} style={{textAlign:"center"}}>
                                     <button className="todo-btn todo-deleteall-btn" type="button" onClick={()=>{
-                                        removeTodoTasks();
+                                        setIsModalOpen(true);
                                     }}>
                                         Delete All
                                     </button>

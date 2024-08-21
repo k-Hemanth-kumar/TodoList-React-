@@ -1,13 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { BsPencil } from "react-icons/bs"
 import { TodoContext } from "../context/todoContext";
-export default function AddTodo({isEditing,editId,editText}){
+export default function AddTodo(){
     //console.log(isEditing,editText,editId)
     //const [isEditing,setIsEditing]=useState(false);
-    const [text,setText]=useState(editText);
+    const {showAlert,setAlert,todoTasks,setTodoTasks,isEditing,setIsEditing,editId,setEditId,editText,setEditText}=useContext(TodoContext);
+    const [text,setText]=useState("");
     //const [editId,setEditId]=useState(null);
     const editRef=useRef();
-    const {showAlert,setAlert,todoTasks,setTodoTasks}=useContext(TodoContext);
     const sumbitHandler=(e)=>{
         e.preventDefault();
         if(!text){
@@ -28,7 +28,9 @@ export default function AddTodo({isEditing,editId,editText}){
             });
             setText("");
             setTodoTasks(updatedItems);
-
+            setIsEditing(false);
+            setEditId(null);
+            setEditText(null);
             setAlert({show:true,message:"Updated Successfully!",type:"success"})
         }
         else{
