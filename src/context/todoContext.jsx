@@ -47,7 +47,20 @@ export default function TodoProvider({children}){
         }))
     }
     const removeTodoTasks=()=>{
-        setTodoTasks([]);
+        console.log(filter);
+        if(filterValues.all===filter){
+            setTodoTasks([]);
+        }
+        else if(filterValues.completed===filter){
+            setTodoTasks(todoTasks.filter((todo)=>{
+                return !todo.completed;
+            }));
+        }
+        else if(filterValues.uncompleted===filter){
+            setTodoTasks(todoTasks.filter((todo)=>{
+                return todo.completed;
+            }));
+        }
     } 
     return(
         <TodoContext.Provider value={{filter,setFilter,alert,setAlert,showAlert,todoTasks,setTodoTasks,removeTodoTasks,deleteHandler,completeHandler,filterTodoTasks,isModalopen,setIsModalOpen,setIsEditing,isEditing,editId,setEditId,editText,setEditText,deleteId,setDeleteId}}>
